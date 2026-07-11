@@ -255,7 +255,7 @@ def _country_data_for_data_kind(
     print_if_verbose(verbose, f"Before data shape: {df.shape}")
 
     # drop some columns we don't need
-    p = re.compile("\d+/\d+/\d+")
+    p = re.compile(r"\d+/\d+/\d+")
 
     assert all(isinstance(x, str) for x in df.columns)
     date_cols = [x for x in df.columns if p.match(x)]
@@ -369,7 +369,7 @@ def country_data_for_data_kind(
         del df["Population (2020)"]
 
     # drop some columns we don't need
-    p = re.compile("\d+/\d+/\d+")
+    p = re.compile(r"\d+/\d+/\d+")
 
     assert all(isinstance(x, str) for x in df.columns)
     date_cols = [x for x in df.columns if p.match(x)]
@@ -417,7 +417,7 @@ def us_data_for_data_kind(
     print_if_verbose(verbose, f"Before data shape: {df.shape}")
 
     # drop some columns we don't need
-    p = re.compile("\d+/\d+/\d+")
+    p = re.compile(r"\d+/\d+/\d+")
 
     assert all(isinstance(x, str) for x in df.columns)
     date_cols = [x for x in df.columns if p.match(x)]
