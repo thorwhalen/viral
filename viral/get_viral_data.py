@@ -31,10 +31,3 @@ from viral.base import (
     update_covid_data,
     instructions_to_make_bar_chart_race,
 )
-
-if __name__ == "__main__":
-    import argh
-
-    argh.dispatch_commands(
-        [mk_and_save_covid_data, update_covid_data, instructions_to_make_bar_chart_race]
-    )
