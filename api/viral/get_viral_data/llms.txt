@@ -1,0 +1,12 @@
+# viral
+
+> Acquiring and analyzing covid-19 (coronavirus) statistics data
+
+
+## Pages in this subsection
+
+- [viral.get_viral_data](index.html.md): This module will help you make the data behind these:
+
+## Optional
+
+- [Top-level llms.txt](../../../llms.txt): Complete documentation index.

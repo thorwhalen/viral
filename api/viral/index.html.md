@@ -1,0 +1,13 @@
+# viral
+
+This module will help you make the data behind these:
+
+- Confirmed cases (by country): [https://public.flourish.studio/visualisation/1704821/](https://public.flourish.studio/visualisation/1704821/)
+- Deaths (by country): [https://public.flourish.studio/visualisation/1705644/](https://public.flourish.studio/visualisation/1705644/)
+- US Confirmed cases (by state): [https://public.flourish.studio/visualisation/1794768/](https://public.flourish.studio/visualisation/1794768/)
+- US Deaths (by state): [https://public.flourish.studio/visualisation/1794797/](https://public.flourish.studio/visualisation/1794797/)
+
+## Submodules
+
+* [viral.base](base/index.html.md)
+* [viral.get_viral_data](get_viral_data/index.html.md)

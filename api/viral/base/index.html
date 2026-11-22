@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="index.html.md">
+<link rel="describedby" href="../../../llms.txt" type="text/markdown">
+<link rel="alternate" type="text/markdown" href="index.html.md">
+<link rel="describedby" href="llms.txt">
+    <title>viral.base &#8212; viral</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/epythet.css?v=e4528f85" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../../../_static/documentation_options.js?v=47de8214"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=fd10adb8"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/viral/base/index';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="viral.get_viral_data" href="../get_viral_data/index.html" />
+    <link rel="prev" title="viral" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.0.3" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">viral</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/thorwhalen/viral" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page" aria-expanded="false" aria-controls="pst-secondary-sidebar-modal">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/thorwhalen/viral" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">viral</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a aria-current="page" class="current reference internal" href="#">viral.base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_viral_data/index.html">viral.get_viral_data</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">viral</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">viral.base</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-viral.base">
+<span id="viral-base"></span><h1>viral.base<a class="headerlink" href="#module-viral.base" title="Link to this heading">#</a></h1>
+<p>This module will help you make the data behind these:</p>
+<ul class="simple">
+<li><p>Confirmed cases (by country): <a class="reference external" href="https://public.flourish.studio/visualisation/1704821/">https://public.flourish.studio/visualisation/1704821/</a></p></li>
+<li><p>Deaths (by country): <a class="reference external" href="https://public.flourish.studio/visualisation/1705644/">https://public.flourish.studio/visualisation/1705644/</a></p></li>
+<li><p>US Confirmed cases (by state): <a class="reference external" href="https://public.flourish.studio/visualisation/1794768/">https://public.flourish.studio/visualisation/1794768/</a></p></li>
+<li><p>US Deaths (by state): <a class="reference external" href="https://public.flourish.studio/visualisation/1794797/">https://public.flourish.studio/visualisation/1794797/</a></p></li>
+</ul>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viral.base.ZippedCsvs" title="viral.base.ZippedCsvs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ZippedCsvs</span></code></a></p></td>
+<td><p>A KvReader to read the contents of a zip file.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viral.base.update_covid_data" title="viral.base.update_covid_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_covid_data</span></code></a>([data_sources])</p></td>
+<td><p>update the coronavirus data</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viral.base.country_data_for_data_kind" title="viral.base.country_data_for_data_kind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">country_data_for_data_kind</span></code></a>([data_sources, kind, ...])</p></td>
+<td><p>kind can be</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viral.base.us_data_for_data_kind" title="viral.base.us_data_for_data_kind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">us_data_for_data_kind</span></code></a>([data_sources, kind, ...])</p></td>
+<td><p>kind can be</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viral.base.mk_and_save_covid_data" title="viral.base.mk_and_save_covid_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mk_and_save_covid_data</span></code></a>([data_sources, kinds, ...])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viral.base.ZippedCsvs">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viral.base.</span></span><span class="sig-name descname"><span class="pre">ZippedCsvs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zip_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_kws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_info_filt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viral/base.html#ZippedCsvs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viral.base.ZippedCsvs" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">py2store.ZipReader</span></code></p>
+<p>A KvReader to read the contents of a zip file.
+Provides a KV perspective of <a class="reference external" href="https://docs.python.org/3/library/zipfile.html">https://docs.python.org/3/library/zipfile.html</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">ZipReader</span></code> has two value categories: Directories and Files.
+Both categories are distinguishable by the keys, through the “ends with slash” convention.</p>
+<p>When a file, the value return is bytes, as usual.</p>
+<p>When a directory, the value returned is a <code class="docutils literal notranslate"><span class="pre">ZipReader</span></code> itself, with all params the same,
+except for the <code class="docutils literal notranslate"><span class="pre">prefix</span></code>, which serves to specify the subfolder (that is,
+<code class="docutils literal notranslate"><span class="pre">prefix</span></code> acts as a filter).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you get data zipped by a mac, you might get some junk along with it.
+Namely <code class="code docutils literal notranslate"><span class="pre">__MACOSX</span></code> folders <code class="code docutils literal notranslate"><span class="pre">.DS_Store</span></code> files. I won’t rant about it, since others have.
+But you might find it useful to remove them from view. One choice is to use
+<code class="code docutils literal notranslate"><span class="pre">dol.trans.filt_iter</span></code>
+to get a filtered view of the zips contents. In most cases, this should do the job:</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># applied to store instance or class:</span>
+<span class="n">store</span> <span class="o">=</span> <span class="n">filt_iter</span><span class="p">(</span><span class="n">filt</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="ow">not</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'__MACOSX'</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">'.DS_Store'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)(</span><span class="n">store</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Another option is just to remove these from the zip file once and for all. In unix-like systems:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">zip</span> <span class="o">-</span><span class="n">d</span> <span class="n">filename</span><span class="o">.</span><span class="n">zip</span> <span class="n">__MACOSX</span><span class="o">/</span>\<span class="o">*</span>
+<span class="nb">zip</span> <span class="o">-</span><span class="n">d</span> <span class="n">filename</span><span class="o">.</span><span class="n">zip</span> \<span class="o">*/.</span><span class="n">DS_Store</span>
+</pre></div>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># &gt;&gt;&gt; s = ZipReader('/path/to/some_zip_file.zip')</span>
+<span class="c1"># &gt;&gt;&gt; len(s)</span>
+<span class="c1"># 53432</span>
+<span class="c1"># &gt;&gt;&gt; list(s)[:3]  # the first 3 elements (well... their keys)</span>
+<span class="c1"># ['odir/', 'odir/app/', 'odir/app/data/']</span>
+<span class="c1"># &gt;&gt;&gt; list(s)[-3:]  # the last 3 elements (well... their keys)</span>
+<span class="c1"># ['odir/app/data/audio/d/1574287049078391/m/Ctor.json',</span>
+<span class="c1">#  'odir/app/data/audio/d/1574287049078391/m/intensity.json',</span>
+<span class="c1">#  'odir/app/data/run/status.json']</span>
+<span class="c1"># &gt;&gt;&gt; # getting a file (note that by default, you get bytes, so need to decode)</span>
+<span class="c1"># &gt;&gt;&gt; s['odir/app/data/run/status.json'].decode()</span>
+<span class="c1"># b'{"test_phase_number": 9, "test_phase": "TestActions.IGNORE_TEST", "session_id": 0}'</span>
+<span class="c1"># &gt;&gt;&gt; # when you ask for the contents for a key that's a directory,</span>
+<span class="c1"># &gt;&gt;&gt; # you get a ZipReader filtered for that prefix:</span>
+<span class="c1"># &gt;&gt;&gt; s['odir/app/data/audio/']</span>
+<span class="c1"># ZipReader('/path/to/some_zip_file.zip', 'odir/app/data/audio/', {}, &lt;function</span>
+<span class="n">take_everything</span> <span class="n">at</span> <span class="mh">0x1538999e0</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; # Often, you only want files (not directories)</span>
+<span class="c1"># &gt;&gt;&gt; # You can filter directories out using the file_info_filt argument</span>
+<span class="c1"># &gt;&gt;&gt; s = ZipReader('/path/to/some_zip_file.zip', file_info_filt=ZipReader.FILES_ONLY)</span>
+<span class="c1"># &gt;&gt;&gt; len(s)  # compare to the 53432 above, that contained dirs too</span>
+<span class="c1"># 53280</span>
+<span class="c1"># &gt;&gt;&gt; list(s)[:3]  # first 3 keys are all files now</span>
+<span class="c1"># ['odir/app/data/plc/d/1574304926795633/d/1574305026895702',</span>
+<span class="c1">#  'odir/app/data/plc/d/1574304926795633/d/1574305276853053',</span>
+<span class="c1">#  'odir/app/data/plc/d/1574304926795633/d/1574305159343326']</span>
+<span class="c1"># &gt;&gt;&gt;</span>
+<span class="c1"># &gt;&gt;&gt; # ZipReader.FILES_ONLY and ZipReader.DIRS_ONLY are just convenience filt functions</span>
+<span class="c1"># &gt;&gt;&gt; # Really, you can provide any custom one yourself.</span>
+<span class="c1"># &gt;&gt;&gt; # This filter function should take a ZipInfo object, and return True or False.</span>
+<span class="c1"># &gt;&gt;&gt; # (https://docs.python.org/3/library/zipfile.html#zipfile.ZipInfo)</span>
+<span class="c1"># &gt;&gt;&gt;</span>
+<span class="c1"># &gt;&gt;&gt; import re</span>
+<span class="c1"># &gt;&gt;&gt; p = re.compile('audio.*\.json$')</span>
+<span class="c1"># &gt;&gt;&gt; my_filt_func = lambda fileinfo: bool(p.search(fileinfo.filename))</span>
+<span class="c1"># &gt;&gt;&gt; s = ZipReader('/Users/twhalen/Downloads/2019_11_21.zip', file_info_filt=my_filt_func)</span>
+<span class="c1"># &gt;&gt;&gt; len(s)</span>
+<span class="c1"># 48</span>
+<span class="c1"># &gt;&gt;&gt; list(s)[:3]</span>
+<span class="c1"># ['odir/app/data/audio/d/1574333557263758/m/Ctor.json',</span>
+<span class="c1">#  'odir/app/data/audio/d/1574333557263758/m/intensity.json',</span>
+<span class="c1">#  'odir/app/data/audio/d/1574288084739961/m/Ctor.json']</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viral.base.update_covid_data">
+<span class="sig-prename descclassname"><span class="pre">viral.base.</span></span><span class="sig-name descname"><span class="pre">update_covid_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_sources</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DFLT_DATA_SOURCES_DIR</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viral/base.html#update_covid_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viral.base.update_covid_data" title="Link to this definition">#</a></dt>
+<dd><p>update the coronavirus data</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viral.base.country_data_for_data_kind">
+<span class="sig-prename descclassname"><span class="pre">viral.base.</span></span><span class="sig-name descname"><span class="pre">country_data_for_data_kind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_sources</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DFLT_DATA_SOURCES_DIR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'confirmed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_capita</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_first_days</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viral/base.html#country_data_for_data_kind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viral.base.country_data_for_data_kind" title="Link to this definition">#</a></dt>
+<dd><p>kind can be
+‘confirmed_US’, ‘deaths_US’, ‘recovered_US’</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viral.base.us_data_for_data_kind">
+<span class="sig-prename descclassname"><span class="pre">viral.base.</span></span><span class="sig-name descname"><span class="pre">us_data_for_data_kind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_sources</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DFLT_DATA_SOURCES_DIR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'confirmed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_capita</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_first_days</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viral/base.html#us_data_for_data_kind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viral.base.us_data_for_data_kind" title="Link to this definition">#</a></dt>
+<dd><p>kind can be
+‘confirmed_US’, ‘deaths_US’, ‘recovered_US’</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viral.base.mk_and_save_covid_data">
+<span class="sig-prename descclassname"><span class="pre">viral.base.</span></span><span class="sig-name descname"><span class="pre">mk_and_save_covid_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_sources</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DFLT_DATA_SOURCES_DIR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kinds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('confirmed',</span> <span class="pre">'deaths',</span> <span class="pre">'confirmed_US',</span> <span class="pre">'deaths_US')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_capita</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(False,</span> <span class="pre">True)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dirpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_first_days</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">39</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viral/base.html#mk_and_save_covid_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viral.base.mk_and_save_covid_data" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_sources</strong> – Dirpath or py2store Store where the data is</p></li>
+<li><p><strong>kinds</strong> – The kinds of data you want to compute and save</p></li>
+<li><p><strong>skip_first_days</strong></p></li>
+<li><p><strong>verbose</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">viral</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../get_viral_data/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">viral.get_viral_data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal" tabindex="-1"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viral.base.ZippedCsvs"><code class="docutils literal notranslate"><span class="pre">ZippedCsvs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viral.base.update_covid_data"><code class="docutils literal notranslate"><span class="pre">update_covid_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viral.base.country_data_for_data_kind"><code class="docutils literal notranslate"><span class="pre">country_data_for_data_kind()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viral.base.us_data_for_data_kind"><code class="docutils literal notranslate"><span class="pre">us_data_for_data_kind()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viral.base.mk_and_save_covid_data"><code class="docutils literal notranslate"><span class="pre">mk_and_save_covid_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../_sources/api/viral/base/index.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

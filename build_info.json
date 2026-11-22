@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "built_at": "2026-11-22T17:50:30Z",
+  "package": {
+    "name": "viral",
+    "version": "0.0.3",
+    "display_name": "viral",
+    "source": "pyproject.toml"
+  },
+  "git": {
+    "available": true,
+    "commit": "5a34e4954740f93b5a07226dee8b54d363f0ebf8",
+    "short_commit": "5a34e49",
+    "branch": "master",
+    "tags": [],
+    "dirty": false,
+    "remote_url": "https://github.com/thorwhalen/viral",
+    "commit_url": "https://github.com/thorwhalen/viral/commit/5a34e4954740f93b5a07226dee8b54d363f0ebf8",
+    "error": null
+  },
+  "ci": {
+    "provider": "github",
+    "repository": "thorwhalen/viral",
+    "sha": "5a34e4954740f93b5a07226dee8b54d363f0ebf8",
+    "sha_in_history": true,
+    "ref": "refs/heads/master",
+    "ref_name": "master",
+    "run_id": "45051534196",
+    "run_url": "https://github.com/thorwhalen/viral/actions/runs/45051534196",
+    "server_url": "https://github.com"
+  },
+  "tools": {
+    "epythet": "0.2.23",
+    "sphinx": "9.1.1",
+    "docutils": "0.22.4",
+    "python": "3.12.16"
+  },
+  "config": {
+    "theme": "auto",
+    "html_theme": "pydata_sphinx_theme",
+    "accent": "#694191",
+    "mode": "auto",
+    "api_generator": "autoapi",
+    "ignore": [
+      "tests/",
+      "scrap/",
+      "examples/"
+    ],
+    "agent_outputs": true,
+    "aggregates": [
+      "md"
+    ],
+    "ai_artifacts": true,
+    "provenance": true,
+    "docs_dir": "docsrc"
+  },
+  "site": {
+    "modules_documented": 3,
+    "objects_documented": 5
+  },
+  "pypi": {
+    "checked": true,
+    "latest": "0.0.3",
+    "relation": "same",
+    "error": null
+  },
+  "reproduce": "git clone https://github.com/thorwhalen/viral && cd viral\ngit checkout 5a34e4954740f93b5a07226dee8b54d363f0ebf8\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "warnings": [],
+  "alignment": {
+    "aligned": true,
+    "notes": []
+  }
+}
