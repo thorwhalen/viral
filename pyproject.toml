@@ -20,6 +20,7 @@ dependencies = [
     "pandas",
     "kaggle",
     "haggle",
+    "six",  # kaggle imports it without declaring it
 ]
 
 [project.urls]
