@@ -111,13 +111,15 @@ format = []
 
 [tool.wads.ci.env]
 required_envvars = []
-test_envvars = ["KAGGLE_USERNAME", "KAGGLE_KEY"]
+test_envvars = ["KAGGLE_USERNAME", "KAGGLE_KEY", "viral_sources_dir"]
 extra_envvars = []
 
 [tool.wads.ci.env.defaults]
 # haggle authenticates to Kaggle at import time; dummies let the doctests be collected
 KAGGLE_USERNAME = "ci-dummy"
 KAGGLE_KEY = "ci-dummy"
+# viral.base raises at import if this directory is missing
+viral_sources_dir = "."
 
 [tool.wads.ci.quality.ruff]
 enabled = true
