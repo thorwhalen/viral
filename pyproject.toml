@@ -111,10 +111,13 @@ format = []
 
 [tool.wads.ci.env]
 required_envvars = []
-test_envvars = []
+test_envvars = ["KAGGLE_USERNAME", "KAGGLE_KEY"]
 extra_envvars = []
 
 [tool.wads.ci.env.defaults]
+# haggle authenticates to Kaggle at import time; dummies let the doctests be collected
+KAGGLE_USERNAME = "ci-dummy"
+KAGGLE_KEY = "ci-dummy"
 
 [tool.wads.ci.quality.ruff]
 enabled = true
