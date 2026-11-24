@@ -44,14 +44,21 @@ DFLT_DATA_SOURCES_DIR = os.path.expanduser(DFLT_DATA_SOURCES_DIR)
 
 kaggle_data = KaggleBytesDatasetReader()
 
-if not os.path.isdir(DFLT_DATA_SOURCES_DIR):
-    raise NotADirectoryError(
-        f"""
-    Directory doesn't exist: {DFLT_DATA_SOURCES_DIR} 
+
+def _ensure_data_sources_dir(path):
+    """Raise an informative error unless *path* is an existing directory.
+
+    Called on first use of the data (``get_data_sources``), never at import, so the
+    package can be imported (and its tests collected) on a machine without the dir.
+    """
+    if not os.path.isdir(path):
+        raise NotADirectoryError(
+            f"""
+    Directory doesn't exist: {path} 
     Make the directory or change the viral_sources_dir environment variable to 
     point to a different one.
     """
-    )
+        )
 
 
 def country_flag_image_url():
@@ -531,6 +538,7 @@ def instructions_to_make_bar_chart_race():
 def get_data_sources(data_sources=DFLT_DATA_SOURCES_DIR):
     if isinstance(data_sources, str):
         my_local_cache = fullpath(data_sources)
+        _ensure_data_sources_dir(my_local_cache)
         CachedFuncReader = mk_cached_store(
             FuncReader, cache=QuickPickleStore(my_local_cache)
         )
@@ -548,7 +556,12 @@ def get_data_sources(data_sources=DFLT_DATA_SOURCES_DIR):
     return data_sources
 
 
-data_sources = get_data_sources()
+def __getattr__(name):
+    """Module-level ``data_sources`` is built on first access, not at import."""
+    if name == "data_sources":
+        return get_data_sources()
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
 
 # if __name__ == "__main__":
 #     country_data_for_data_kind(kind="confirmed", per_capita=True)
