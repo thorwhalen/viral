@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/epythet.css?v=e4528f85" />
   
   <!-- So that users can add custom icons -->
@@ -495,8 +494,8 @@ window.runMermaid = runMermaid;</script>
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../api/index.html">
-    API Reference
+  <a class="nav-link nav-internal" href="../../api.html">
+    API reference
   </a>
 </li>
 
@@ -594,8 +593,8 @@ window.runMermaid = runMermaid;</script>
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../api/index.html">
-    API Reference
+  <a class="nav-link nav-internal" href="../../api.html">
+    API reference
   </a>
 </li>
 
@@ -745,14 +744,21 @@ window.runMermaid = runMermaid;</script>
 
 <span class="n">kaggle_data</span> <span class="o">=</span> <span class="n">KaggleBytesDatasetReader</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">DFLT_DATA_SOURCES_DIR</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="ne">NotADirectoryError</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">"""</span>
-<span class="s2">    Directory doesn't exist: </span><span class="si">{</span><span class="n">DFLT_DATA_SOURCES_DIR</span><span class="si">}</span><span class="s2"> </span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_ensure_data_sources_dir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Raise an informative error unless *path* is an existing directory.</span>
+
+<span class="sd">    Called on first use of the data (``get_data_sources``), never at import, so the</span>
+<span class="sd">    package can be imported (and its tests collected) on a machine without the dir.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotADirectoryError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">    Directory doesn't exist: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> </span>
 <span class="s2">    Make the directory or change the viral_sources_dir environment variable to </span>
 <span class="s2">    point to a different one.</span>
 <span class="s2">    """</span>
-    <span class="p">)</span>
+        <span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">country_flag_image_url</span><span class="p">():</span>
@@ -892,11 +898,11 @@ window.runMermaid = runMermaid;</script>
     <span class="k">return</span> <span class="n">df</span>
 
 
+<div class="viewcode-block" id="ZippedCsvs">
+<a class="viewcode-back" href="../../_autosummary/viral.base.html#viral.base.ZippedCsvs">[docs]</a>
 <span class="nd">@kv_wrap</span><span class="o">.</span><span class="n">outcoming_vals</span><span class="p">(</span>
     <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="p">)</span>  <span class="c1"># this is to format the data as a dataframe</span>
-<div class="viewcode-block" id="ZippedCsvs">
-<a class="viewcode-back" href="../../api/viral/base/index.html#viral.base.ZippedCsvs">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ZippedCsvs</span><span class="p">(</span><span class="n">ZipReader</span><span class="p">):</span>
     <span class="k">pass</span></div>
 
@@ -908,7 +914,7 @@ window.runMermaid = runMermaid;</script>
 
 <span class="c1"># To update the coronavirus data:</span>
 <div class="viewcode-block" id="update_covid_data">
-<a class="viewcode-back" href="../../api/viral/base/index.html#viral.base.update_covid_data">[docs]</a>
+<a class="viewcode-back" href="../../_autosummary/viral.base.html#viral.base.update_covid_data">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">update_covid_data</span><span class="p">(</span><span class="n">data_sources</span><span class="o">=</span><span class="n">DFLT_DATA_SOURCES_DIR</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""update the coronavirus data"""</span>
     <span class="n">data_sources</span> <span class="o">=</span> <span class="n">get_data_sources</span><span class="p">(</span><span class="n">data_sources</span><span class="p">)</span>
@@ -1046,7 +1052,7 @@ window.runMermaid = runMermaid;</script>
 
 
 <div class="viewcode-block" id="country_data_for_data_kind">
-<a class="viewcode-back" href="../../api/viral/base/index.html#viral.base.country_data_for_data_kind">[docs]</a>
+<a class="viewcode-back" href="../../_autosummary/viral.base.html#viral.base.country_data_for_data_kind">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">country_data_for_data_kind</span><span class="p">(</span>
     <span class="n">data_sources</span><span class="o">=</span><span class="n">DFLT_DATA_SOURCES_DIR</span><span class="p">,</span>
     <span class="n">kind</span><span class="o">=</span><span class="s2">"confirmed"</span><span class="p">,</span>
@@ -1110,7 +1116,7 @@ window.runMermaid = runMermaid;</script>
 
 
 <div class="viewcode-block" id="us_data_for_data_kind">
-<a class="viewcode-back" href="../../api/viral/base/index.html#viral.base.us_data_for_data_kind">[docs]</a>
+<a class="viewcode-back" href="../../_autosummary/viral.base.html#viral.base.us_data_for_data_kind">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">us_data_for_data_kind</span><span class="p">(</span>
     <span class="n">data_sources</span><span class="o">=</span><span class="n">DFLT_DATA_SOURCES_DIR</span><span class="p">,</span>
     <span class="n">kind</span><span class="o">=</span><span class="s2">"confirmed"</span><span class="p">,</span>
@@ -1176,7 +1182,7 @@ window.runMermaid = runMermaid;</script>
 
 
 <div class="viewcode-block" id="mk_and_save_covid_data">
-<a class="viewcode-back" href="../../api/viral/base/index.html#viral.base.mk_and_save_covid_data">[docs]</a>
+<a class="viewcode-back" href="../../_autosummary/viral.base.html#viral.base.mk_and_save_covid_data">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">mk_and_save_covid_data</span><span class="p">(</span>
     <span class="n">data_sources</span><span class="o">=</span><span class="n">DFLT_DATA_SOURCES_DIR</span><span class="p">,</span>
     <span class="n">kinds</span><span class="o">=</span><span class="p">(</span><span class="s2">"confirmed"</span><span class="p">,</span> <span class="s2">"deaths"</span><span class="p">,</span> <span class="s2">"confirmed_US"</span><span class="p">,</span> <span class="s2">"deaths_US"</span><span class="p">),</span>
@@ -1247,6 +1253,7 @@ window.runMermaid = runMermaid;</script>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_data_sources</span><span class="p">(</span><span class="n">data_sources</span><span class="o">=</span><span class="n">DFLT_DATA_SOURCES_DIR</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_sources</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">my_local_cache</span> <span class="o">=</span> <span class="n">fullpath</span><span class="p">(</span><span class="n">data_sources</span><span class="p">)</span>
+        <span class="n">_ensure_data_sources_dir</span><span class="p">(</span><span class="n">my_local_cache</span><span class="p">)</span>
         <span class="n">CachedFuncReader</span> <span class="o">=</span> <span class="n">mk_cached_store</span><span class="p">(</span>
             <span class="n">FuncReader</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">QuickPickleStore</span><span class="p">(</span><span class="n">my_local_cache</span><span class="p">)</span>
         <span class="p">)</span>
@@ -1264,7 +1271,12 @@ window.runMermaid = runMermaid;</script>
     <span class="k">return</span> <span class="n">data_sources</span>
 
 
-<span class="n">data_sources</span> <span class="o">=</span> <span class="n">get_data_sources</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Module-level ``data_sources`` is built on first access, not at import."""</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"data_sources"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_data_sources</span><span class="p">()</span>
+    <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"module </span><span class="si">{</span><span class="vm">__name__</span><span class="si">!r}</span><span class="s2"> has no attribute </span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
+
 
 <span class="c1"># if __name__ == "__main__":</span>
 <span class="c1">#     country_data_for_data_kind(kind="confirmed", per_capita=True)</span>

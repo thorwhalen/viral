@@ -6,11 +6,11 @@
 ## Pages
 
 - [viral](index.html.md): Acquiring and analyzing covid-19 (coronavirus) statistics data
-- [API Reference](api/index.html.md): This page contains auto-generated API reference documentation &lt;sup&gt;1&lt;/sup&gt;.
-- [viral](api/viral/index.html.md): This module will help you make the data behind these:
-- [viral.base](api/viral/base/index.html.md): This module will help you make the data behind these:
-- [viral.get_viral_data](api/viral/get_viral_data/index.html.md): This module will help you make the data behind these:
-- [About this build](about-this-build.html.md): This documentation was built on &#42;&#42;2026-11-22 17:50 UTC&#42;&#42; from commit &lt;a href="https://github.com/tho...
+- [API reference](api.html.md): | &#96;viral&#96;   | This module will help you make the data behind these:   |
+- [viral](_autosummary/viral.html.md): This module will help you make the data behind these:
+- [viral.base](_autosummary/viral.base.html.md): This module will help you make the data behind these:
+- [viral.get_viral_data](_autosummary/viral.get_viral_data.html.md): This module will help you make the data behind these:
+- [About this build](about-this-build.html.md): This documentation was built on &#42;&#42;2026-11-24 01:21 UTC&#42;&#42; from commit &lt;a href="https://github.com/tho...
 
 ## Optional
 

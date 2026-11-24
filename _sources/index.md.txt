@@ -11,5 +11,5 @@
 :maxdepth: 3
 :hidden:
 
-api/index
+api
 ```

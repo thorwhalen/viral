@@ -1,4 +1,4 @@
-> built 2026-11-22 17:50 UTC from 5a34e49 (master) · viral 0.0.3. Details: build_info.json
+> built 2026-11-24 01:21 UTC from 73a451f (master) · viral 0.0.3. Details: build_info.json
 
 # index.html.md
 
@@ -36,13 +36,220 @@ Both accounts are free.
 <p class="epythet-aggregates">This documentation as a single file: <a href="viral.md">viral.md</a> (Markdown, for agents).</p>
 
 
+# _autosummary/viral.base.html.md
+
+# viral.base
+
+This module will help you make the data behind these:
+
+- Confirmed cases (by country): [https://public.flourish.studio/visualisation/1704821/](https://public.flourish.studio/visualisation/1704821/)
+- Deaths (by country): [https://public.flourish.studio/visualisation/1705644/](https://public.flourish.studio/visualisation/1705644/)
+- US Confirmed cases (by state): [https://public.flourish.studio/visualisation/1794768/](https://public.flourish.studio/visualisation/1794768/)
+- US Deaths (by state): [https://public.flourish.studio/visualisation/1794797/](https://public.flourish.studio/visualisation/1794797/)
+
+### Functions
+
+| `add_flag_urls`(df, image_urls)                                                                   |                                                         |
+|---------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| `city_population_in_time`()                                                                       |                                                         |
+| [`country_data_for_data_kind`](_autosummary/viral.base.html.md#viral.base.country_data_for_data_kind)([data_sources, ...])  | kind can be 'confirmed_US', 'deaths_US', 'recovered_US' |
+| `country_flag_image_url`()                                                                        |                                                         |
+| `country_flag_image_url_prep`(df)                                                                 |                                                         |
+| `data_for_data_kind`([data_sources, kind, ...])                                                   |                                                         |
+| `fullpath`(path)                                                                                  |                                                         |
+| `get_covid_base_data`([data_sources, kind])                                                       |                                                         |
+| `get_data_sources`([data_sources])                                                                |                                                         |
+| `instructions_to_make_bar_chart_race`()                                                           |                                                         |
+| `kaggle_coronavirus_dataset`()                                                                    |                                                         |
+| `mk_and_save_country_data_for_data_kind`([...])                                                   |                                                         |
+| [`mk_and_save_covid_data`](_autosummary/viral.base.html.md#viral.base.mk_and_save_covid_data)([data_sources, ...])      |                                                         |
+| `print_if_verbose`(verbose, \*args, \*\*kwargs)                                                   |                                                         |
+| `state_flag_image_url`()                                                                          |                                                         |
+| [`update_covid_data`](_autosummary/viral.base.html.md#viral.base.update_covid_data)([data_sources])                | update the coronavirus data                             |
+| [`us_data_for_data_kind`](_autosummary/viral.base.html.md#viral.base.us_data_for_data_kind)([data_sources, kind, ...]) | kind can be 'confirmed_US', 'deaths_US', 'recovered_US' |
+| `us_states_population`()                                                                          |                                                         |
+| `world_population_dataset`()                                                                      |                                                         |
+
+### Classes
+
+| [`ZippedCsvs`](_autosummary/viral.base.html.md#viral.base.ZippedCsvs)(zip_file[, prefix, open_kws, ...])   | By store we mean key-value store.   |
+|--------------------------------------------------------------------------------------------------|-------------------------------------|
+
+### *class* viral.base.ZippedCsvs(zip_file, prefix='', , open_kws=None, file_info_filt=None)
+
+Bases: `Store`
+
+By store we mean key-value store. This could be files in a filesystem, objects in s3, or a database. Where and
+how the content is stored should be specified, but StoreInterface offers a dict-like interface to this.
+
+```default
+__getitem__ calls: _id_of_key                                       _obj_of_data
+__setitem__ calls: _id_of_key                   _data_of_obj
+__delitem__ calls: _id_of_key
+__iter__    calls:                  _key_of_id
+```
+
+```pycon
+>>> # Default store: no key or value conversion #####################################
+>>> from dol import Store
+>>> s = Store()
+>>> s['foo'] = 33
+>>> s['bar'] = 65
+>>> assert list(s.items()) == [('foo', 33), ('bar', 65)]
+>>> assert list(s.store.items()) == [('foo', 33), ('bar', 65)]  # see that the store contains the same thing
+>>>
+>>> #################################################################################
+>>> # Now let's make stores that have a key and value conversion layer ##############
+>>> # input keys will be upper cased, and output keys lower cased ###################
+>>> # input values (assumed int) will be converted to ascii string, and visa versa ##
+>>> #################################################################################
+>>>
+>>> def test_store(s):
+...     s['foo'] = 33  # write 33 to 'foo'
+...     assert 'foo' in s  # __contains__ works
+...     assert 'no_such_key' not in s  # __nin__ works
+...     s['bar'] = 65  # write 65 to 'bar'
+...     assert len(s) == 2  # there are indeed two elements
+...     assert list(s) == ['foo', 'bar']  # these are the keys
+...     assert list(s.keys()) == ['foo', 'bar']  # the keys() method works!
+...     assert list(s.values()) == [33, 65]  # the values() method works!
+...     assert list(s.items()) == [('foo', 33), ('bar', 65)]  # these are the items
+...     assert list(s.store.items()) == [('FOO', '!'), ('BAR', 'A')]  # but note the internal representation
+...     assert s.get('foo') == 33  # the get method works
+...     assert s.get('no_such_key', 'something') == 'something'  # return a default value
+...     del(s['foo'])  # you can delete an item given its key
+...     assert len(s) == 1  # see, only one item left!
+...     assert list(s.items()) == [('bar', 65)]  # here it is
+>>>
+>>> # We can introduce this conversion layer in several ways. Here's a few... ######################
+>>> # by subclassing ###############################################################################
+>>> class MyStore(Store):
+...     def _id_of_key(self, k):
+...         return k.upper()
+...     def _key_of_id(self, _id):
+...         return _id.lower()
+...     def _data_of_obj(self, obj):
+...         return chr(obj)
+...     def _obj_of_data(self, data):
+...         return ord(data)
+>>> s = MyStore(store=dict())  # note that you don't need to specify dict(), since it's the default
+>>> test_store(s)
+>>>
+>>> # by assigning functions to converters ##########################################################
+>>> class MyStore(Store):
+...     def __init__(self, store, _id_of_key, _key_of_id, _data_of_obj, _obj_of_data):
+...         super().__init__(store)
+...         self._id_of_key = _id_of_key
+...         self._key_of_id = _key_of_id
+...         self._data_of_obj = _data_of_obj
+...         self._obj_of_data = _obj_of_data
+...
+>>> s = MyStore(dict(),
+...             _id_of_key=lambda k: k.upper(),
+...             _key_of_id=lambda _id: _id.lower(),
+...             _data_of_obj=lambda obj: chr(obj),
+...             _obj_of_data=lambda data: ord(data))
+>>> test_store(s)
+>>>
+>>> # using a Mixin class #############################################################################
+>>> class Mixin:
+...     def _id_of_key(self, k):
+...         return k.upper()
+...     def _key_of_id(self, _id):
+...         return _id.lower()
+...     def _data_of_obj(self, obj):
+...         return chr(obj)
+...     def _obj_of_data(self, data):
+...         return ord(data)
+...
+>>> class MyStore(Mixin, Store):  # note that the Mixin must come before Store in the mro
+...     pass
+...
+>>> s = MyStore()  # no dict()? No, because default anyway
+>>> test_store(s)
+>>>
+>>> # adding wrapper methods to an already made Store instance #########################################
+>>> s = Store(dict())
+>>> s._id_of_key=lambda k: k.upper()
+>>> s._key_of_id=lambda _id: _id.lower()
+>>> s._data_of_obj=lambda obj: chr(obj)
+>>> s._obj_of_data=lambda data: ord(data)
+>>> test_store(s)
+```
+
+Note on defining your own “Mapping Views”.
+
+When you do a `.keys()`, a `.values()` or `.items()` you’re getting a `MappingView`
+instance; an iterable and sized container that provides some methods to access
+particular aspects of the wrapped mapping.
+
+If you need to customize the behavior of these instances, you should avoid
+overriding the `keys`, `values` or `items` methods directly, but instead
+override the `KeysView`, `ValuesView` or `ItemsView` classes that they use.
+
+For more, see: [https://github.com/i2mint/dol/wiki/Mapping-Views](https://github.com/i2mint/dol/wiki/Mapping-Views)
+
+### viral.base.country_data_for_data_kind(data_sources='/home/runner/ddir/my_sources', kind='confirmed', per_capita=False, skip_first_days=0, verbose=False)
+
+kind can be
+‘confirmed_US’, ‘deaths_US’, ‘recovered_US’
+
+### viral.base.mk_and_save_covid_data(data_sources='/home/runner/ddir/my_sources', kinds=('confirmed', 'deaths', 'confirmed_US', 'deaths_US'), per_capita=(False, True), save_dirpath='.', skip_first_days=39, verbose=True)
+
+* **Parameters:**
+  * **data_sources** – Dirpath or py2store Store where the data is
+  * **kinds** – The kinds of data you want to compute and save
+  * **skip_first_days**
+  * **verbose**
+* **Returns:**
+
+### viral.base.update_covid_data(data_sources='/home/runner/ddir/my_sources')
+
+update the coronavirus data
+
+### viral.base.us_data_for_data_kind(data_sources='/home/runner/ddir/my_sources', kind='confirmed', per_capita=False, skip_first_days=0, verbose=False)
+
+kind can be
+‘confirmed_US’, ‘deaths_US’, ‘recovered_US’
+
+
+# _autosummary/viral.get_viral_data.html.md
+
+# viral.get_viral_data
+
+This module will help you make the data behind these:
+
+- Confirmed cases (by country): [https://public.flourish.studio/visualisation/1704821/](https://public.flourish.studio/visualisation/1704821/)
+- Deaths (by country): [https://public.flourish.studio/visualisation/1705644/](https://public.flourish.studio/visualisation/1705644/)
+- US Confirmed cases (by state): [https://public.flourish.studio/visualisation/1794768/](https://public.flourish.studio/visualisation/1794768/)
+- US Deaths (by state): [https://public.flourish.studio/visualisation/1794797/](https://public.flourish.studio/visualisation/1794797/)
+
+
+# _autosummary/viral.html.md
+
+# viral
+
+This module will help you make the data behind these:
+
+- Confirmed cases (by country): [https://public.flourish.studio/visualisation/1704821/](https://public.flourish.studio/visualisation/1704821/)
+- Deaths (by country): [https://public.flourish.studio/visualisation/1705644/](https://public.flourish.studio/visualisation/1705644/)
+- US Confirmed cases (by state): [https://public.flourish.studio/visualisation/1794768/](https://public.flourish.studio/visualisation/1794768/)
+- US Deaths (by state): [https://public.flourish.studio/visualisation/1794797/](https://public.flourish.studio/visualisation/1794797/)
+
+### Modules
+
+| [`base`](_autosummary/viral.base.html.md#module-viral.base)                     | This module will help you make the data behind these:   |
+|---------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| [`get_viral_data`](_autosummary/viral.get_viral_data.html.md#module-viral.get_viral_data) | This module will help you make the data behind these:   |
+
+
 # about-this-build.html.md
 
 <!-- generated by epythet -->
 
 # About this build
 
-This documentation was built on **2026-11-22 17:50 UTC** from commit <a href="https://github.com/thorwhalen/viral/commit/5a34e4954740f93b5a07226dee8b54d363f0ebf8"><code>5a34e49</code></a> on branch <code>master</code>, for **viral 0.0.3** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-24 01:21 UTC** from commit <a href="https://github.com/thorwhalen/viral/commit/73a451f7d9af29723aff123f37476d3befd63f41"><code>73a451f</code></a> on branch <code>master</code>, for **viral 0.0.3** (from <code>pyproject.toml</code>).
 
 #### NOTE
 Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
@@ -51,7 +258,7 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 |                     |                                                                                                                                                         |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/thorwhalen/viral/commit/5a34e4954740f93b5a07226dee8b54d363f0ebf8"><code>5a34e4954740f93b5a07226dee8b54d363f0ebf8</code></a> |
+| Commit              | <a href="https://github.com/thorwhalen/viral/commit/73a451f7d9af29723aff123f37476d3befd63f41"><code>73a451f7d9af29723aff123f37476d3befd63f41</code></a> |
 | Branch              | <code>master</code>                                                                                                                                     |
 | Tags at this commit | none                                                                                                                                                    |
 | Working tree        | clean                                                                                                                                                   |
@@ -62,15 +269,15 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
 | Repository   | <code>thorwhalen/viral</code>                                                              |
-| Run          | <a href="https://github.com/thorwhalen/viral/actions/runs/45051534196">45051534196</a>     |
+| Run          | <a href="https://github.com/thorwhalen/viral/actions/runs/45304209601">45304209601</a>     |
 | Ref          | <code>refs/heads/master</code>                                                             |
-| Event commit | <code>5a34e4954740f93b5a07226dee8b54d363f0ebf8</code> (in the history of the built commit) |
+| Event commit | <code>73a451f7d9af29723aff123f37476d3befd63f41</code> (in the history of the built commit) |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.23  |
+| epythet  | 0.2.25  |
 | Sphinx   | 9.1.1   |
 | docutils | 0.22.4  |
 | Python   | 3.12.16 |
@@ -81,7 +288,7 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |---------------|-------------------------------------------------------------------|
 | theme         | <code>auto</code> (Sphinx theme <code>pydata_sphinx_theme</code>) |
 | accent        | <code>#694191</code>                                              |
-| api_generator | <code>autoapi</code>                                              |
+| api_generator | <code>autosummary</code>                                          |
 | ignore        | <code>tests/</code>, <code>scrap/</code>, <code>examples/</code>  |
 | agent_outputs | <code>true</code>                                                 |
 | aggregates    | <code>md</code>                                                   |
@@ -95,185 +302,19 @@ Latest release: <a href="https://pypi.org/project/viral/0.0.3/">0.0.3</a>, the s
 
 ```bash
 git clone https://github.com/thorwhalen/viral && cd viral
-git checkout 5a34e4954740f93b5a07226dee8b54d363f0ebf8
-pip install "epythet==0.2.23"
+git checkout 73a451f7d9af29723aff123f37476d3befd63f41
+pip install "epythet==0.2.25"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 
 The same data, for machines: <a href="build_info.json"><code>build_info.json</code></a> (schema version 1).
 
 
-# api/index.html.md
+# api.html.md
 
-# API Reference
+# API reference
 
-This page contains auto-generated API reference documentation <sup>[1](#f1)</sup>.
-
-* [viral](api/viral/index.html.md)
-  * [viral.base](api/viral/base/index.html.md)
-  * [viral.get_viral_data](api/viral/get_viral_data/index.html.md)
-
-* <a id='f1'>**[1]**</a> Created with [sphinx-autoapi](https://github.com/readthedocs/sphinx-autoapi)
-
-
-# api/viral/base/index.html.md
-
-# viral.base
-
-This module will help you make the data behind these:
-
-- Confirmed cases (by country): [https://public.flourish.studio/visualisation/1704821/](https://public.flourish.studio/visualisation/1704821/)
-- Deaths (by country): [https://public.flourish.studio/visualisation/1705644/](https://public.flourish.studio/visualisation/1705644/)
-- US Confirmed cases (by state): [https://public.flourish.studio/visualisation/1794768/](https://public.flourish.studio/visualisation/1794768/)
-- US Deaths (by state): [https://public.flourish.studio/visualisation/1794797/](https://public.flourish.studio/visualisation/1794797/)
-
-## Classes
-
-| [`ZippedCsvs`](api/viral/base/index.html.md#viral.base.ZippedCsvs)   | A KvReader to read the contents of a zip file.   |
-|---------------------------------------------------------------|--------------------------------------------------|
-
-## Functions
-
-| [`update_covid_data`](api/viral/base/index.html.md#viral.base.update_covid_data)([data_sources])                     | update the coronavirus data   |
-|--------------------------------------------------------------------------------------------------------|-------------------------------|
-| [`country_data_for_data_kind`](api/viral/base/index.html.md#viral.base.country_data_for_data_kind)([data_sources, kind, ...]) | kind can be                   |
-| [`us_data_for_data_kind`](api/viral/base/index.html.md#viral.base.us_data_for_data_kind)([data_sources, kind, ...])      | kind can be                   |
-| [`mk_and_save_covid_data`](api/viral/base/index.html.md#viral.base.mk_and_save_covid_data)([data_sources, kinds, ...])    |                               |
-
-## Module Contents
-
-### *class* viral.base.ZippedCsvs(zip_file, prefix='', , open_kws=None, file_info_filt=None)
-
-Bases: `py2store.ZipReader`
-
-A KvReader to read the contents of a zip file.
-Provides a KV perspective of [https://docs.python.org/3/library/zipfile.html](https://docs.python.org/3/library/zipfile.html)
-
-`ZipReader` has two value categories: Directories and Files.
-Both categories are distinguishable by the keys, through the “ends with slash” convention.
-
-When a file, the value return is bytes, as usual.
-
-When a directory, the value returned is a `ZipReader` itself, with all params the same,
-except for the `prefix`, which serves to specify the subfolder (that is,
-`prefix` acts as a filter).
-
-#### NOTE
-If you get data zipped by a mac, you might get some junk along with it.
-Namely `__MACOSX` folders `.DS_Store` files. I won’t rant about it, since others have.
-But you might find it useful to remove them from view. One choice is to use
-`dol.trans.filt_iter`
-to get a filtered view of the zips contents. In most cases, this should do the job:
-
-```default
-# applied to store instance or class:
-store = filt_iter(filt=lambda x: not x.startswith('__MACOSX') and '.DS_Store' not in x)(store)
-```
-
-Another option is just to remove these from the zip file once and for all. In unix-like systems:
-
-```default
-zip -d filename.zip __MACOSX/\*
-zip -d filename.zip \*/.DS_Store
-```
-
-### Examples
-
-```default
-# >>> s = ZipReader('/path/to/some_zip_file.zip')
-# >>> len(s)
-# 53432
-# >>> list(s)[:3]  # the first 3 elements (well... their keys)
-# ['odir/', 'odir/app/', 'odir/app/data/']
-# >>> list(s)[-3:]  # the last 3 elements (well... their keys)
-# ['odir/app/data/audio/d/1574287049078391/m/Ctor.json',
-#  'odir/app/data/audio/d/1574287049078391/m/intensity.json',
-#  'odir/app/data/run/status.json']
-# >>> # getting a file (note that by default, you get bytes, so need to decode)
-# >>> s['odir/app/data/run/status.json'].decode()
-# b'{"test_phase_number": 9, "test_phase": "TestActions.IGNORE_TEST", "session_id": 0}'
-# >>> # when you ask for the contents for a key that's a directory,
-# >>> # you get a ZipReader filtered for that prefix:
-# >>> s['odir/app/data/audio/']
-# ZipReader('/path/to/some_zip_file.zip', 'odir/app/data/audio/', {}, <function
-take_everything at 0x1538999e0>)
-# >>> # Often, you only want files (not directories)
-# >>> # You can filter directories out using the file_info_filt argument
-# >>> s = ZipReader('/path/to/some_zip_file.zip', file_info_filt=ZipReader.FILES_ONLY)
-# >>> len(s)  # compare to the 53432 above, that contained dirs too
-# 53280
-# >>> list(s)[:3]  # first 3 keys are all files now
-# ['odir/app/data/plc/d/1574304926795633/d/1574305026895702',
-#  'odir/app/data/plc/d/1574304926795633/d/1574305276853053',
-#  'odir/app/data/plc/d/1574304926795633/d/1574305159343326']
-# >>>
-# >>> # ZipReader.FILES_ONLY and ZipReader.DIRS_ONLY are just convenience filt functions
-# >>> # Really, you can provide any custom one yourself.
-# >>> # This filter function should take a ZipInfo object, and return True or False.
-# >>> # (https://docs.python.org/3/library/zipfile.html#zipfile.ZipInfo)
-# >>>
-# >>> import re
-# >>> p = re.compile('audio.*\.json$')
-# >>> my_filt_func = lambda fileinfo: bool(p.search(fileinfo.filename))
-# >>> s = ZipReader('/Users/twhalen/Downloads/2019_11_21.zip', file_info_filt=my_filt_func)
-# >>> len(s)
-# 48
-# >>> list(s)[:3]
-# ['odir/app/data/audio/d/1574333557263758/m/Ctor.json',
-#  'odir/app/data/audio/d/1574333557263758/m/intensity.json',
-#  'odir/app/data/audio/d/1574288084739961/m/Ctor.json']
-```
-
-### viral.base.update_covid_data(data_sources=DFLT_DATA_SOURCES_DIR)
-
-update the coronavirus data
-
-### viral.base.country_data_for_data_kind(data_sources=DFLT_DATA_SOURCES_DIR, kind='confirmed', per_capita=False, skip_first_days=0, verbose=False)
-
-kind can be
-‘confirmed_US’, ‘deaths_US’, ‘recovered_US’
-
-### viral.base.us_data_for_data_kind(data_sources=DFLT_DATA_SOURCES_DIR, kind='confirmed', per_capita=False, skip_first_days=0, verbose=False)
-
-kind can be
-‘confirmed_US’, ‘deaths_US’, ‘recovered_US’
-
-### viral.base.mk_and_save_covid_data(data_sources=DFLT_DATA_SOURCES_DIR, kinds=('confirmed', 'deaths', 'confirmed_US', 'deaths_US'), per_capita=(False, True), save_dirpath='.', skip_first_days=39, verbose=True)
-
-* **Parameters:**
-  * **data_sources** – Dirpath or py2store Store where the data is
-  * **kinds** – The kinds of data you want to compute and save
-  * **skip_first_days**
-  * **verbose**
-* **Returns:**
-
-
-# api/viral/get_viral_data/index.html.md
-
-# viral.get_viral_data
-
-This module will help you make the data behind these:
-
-- Confirmed cases (by country): [https://public.flourish.studio/visualisation/1704821/](https://public.flourish.studio/visualisation/1704821/)
-- Deaths (by country): [https://public.flourish.studio/visualisation/1705644/](https://public.flourish.studio/visualisation/1705644/)
-- US Confirmed cases (by state): [https://public.flourish.studio/visualisation/1794768/](https://public.flourish.studio/visualisation/1794768/)
-- US Deaths (by state): [https://public.flourish.studio/visualisation/1794797/](https://public.flourish.studio/visualisation/1794797/)
-
-
-# api/viral/index.html.md
-
-# viral
-
-This module will help you make the data behind these:
-
-- Confirmed cases (by country): [https://public.flourish.studio/visualisation/1704821/](https://public.flourish.studio/visualisation/1704821/)
-- Deaths (by country): [https://public.flourish.studio/visualisation/1705644/](https://public.flourish.studio/visualisation/1705644/)
-- US Confirmed cases (by state): [https://public.flourish.studio/visualisation/1794768/](https://public.flourish.studio/visualisation/1794768/)
-- US Deaths (by state): [https://public.flourish.studio/visualisation/1794797/](https://public.flourish.studio/visualisation/1794797/)
-
-## Submodules
-
-* [viral.base](api/viral/base/index.html.md)
-* [viral.get_viral_data](api/viral/get_viral_data/index.html.md)
+| [`viral`](_autosummary/viral.html.md#module-viral)   | This module will help you make the data behind these:   |
+|-----------------------------------------------------------------------|---------------------------------------------------------|
 
 

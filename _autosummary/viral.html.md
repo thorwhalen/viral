@@ -7,7 +7,8 @@ This module will help you make the data behind these:
 - US Confirmed cases (by state): [https://public.flourish.studio/visualisation/1794768/](https://public.flourish.studio/visualisation/1794768/)
 - US Deaths (by state): [https://public.flourish.studio/visualisation/1794797/](https://public.flourish.studio/visualisation/1794797/)
 
-## Submodules
+### Modules
 
-* [viral.base](base/index.html.md)
-* [viral.get_viral_data](get_viral_data/index.html.md)
+| [`base`](viral.base.html.md#module-viral.base)                     | This module will help you make the data behind these:   |
+|---------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| [`get_viral_data`](viral.get_viral_data.html.md#module-viral.get_viral_data) | This module will help you make the data behind these:   |

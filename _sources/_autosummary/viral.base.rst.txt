@@ -1,0 +1,36 @@
+viral.base
+==========
+
+.. automodule:: viral.base
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      add_flag_urls
+      city_population_in_time
+      country_data_for_data_kind
+      country_flag_image_url
+      country_flag_image_url_prep
+      data_for_data_kind
+      fullpath
+      get_covid_base_data
+      get_data_sources
+      instructions_to_make_bar_chart_race
+      kaggle_coronavirus_dataset
+      mk_and_save_country_data_for_data_kind
+      mk_and_save_covid_data
+      print_if_verbose
+      state_flag_image_url
+      update_covid_data
+      us_data_for_data_kind
+      us_states_population
+      world_population_dataset
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ZippedCsvs
+   

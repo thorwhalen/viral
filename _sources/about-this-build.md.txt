@@ -5,7 +5,7 @@ orphan: true
 
 # About this build
 
-This documentation was built on **2026-11-22 17:50 UTC** from commit <a href="https://github.com/thorwhalen/viral/commit/5a34e4954740f93b5a07226dee8b54d363f0ebf8"><code>5a34e49</code></a> on branch <code>master</code>, for **viral 0.0.3** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-24 01:21 UTC** from commit <a href="https://github.com/thorwhalen/viral/commit/73a451f7d9af29723aff123f37476d3befd63f41"><code>73a451f</code></a> on branch <code>master</code>, for **viral 0.0.3** (from <code>pyproject.toml</code>).
 
 :::{note}
 Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
@@ -15,7 +15,7 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 | | |
 |---|---|
-| Commit | <a href="https://github.com/thorwhalen/viral/commit/5a34e4954740f93b5a07226dee8b54d363f0ebf8"><code>5a34e4954740f93b5a07226dee8b54d363f0ebf8</code></a> |
+| Commit | <a href="https://github.com/thorwhalen/viral/commit/73a451f7d9af29723aff123f37476d3befd63f41"><code>73a451f7d9af29723aff123f37476d3befd63f41</code></a> |
 | Branch | <code>master</code> |
 | Tags at this commit | none |
 | Working tree | clean |
@@ -26,15 +26,15 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 | | |
 |---|---|
 | Repository | <code>thorwhalen/viral</code> |
-| Run | <a href="https://github.com/thorwhalen/viral/actions/runs/45051534196">45051534196</a> |
+| Run | <a href="https://github.com/thorwhalen/viral/actions/runs/45304209601">45304209601</a> |
 | Ref | <code>refs/heads/master</code> |
-| Event commit | <code>5a34e4954740f93b5a07226dee8b54d363f0ebf8</code> (in the history of the built commit) |
+| Event commit | <code>73a451f7d9af29723aff123f37476d3befd63f41</code> (in the history of the built commit) |
 
 ## Tools
 
 | | |
 |---|---|
-| epythet | 0.2.23 |
+| epythet | 0.2.25 |
 | Sphinx | 9.1.1 |
 | docutils | 0.22.4 |
 | Python | 3.12.16 |
@@ -45,7 +45,7 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |---|---|
 | theme | <code>auto</code> (Sphinx theme <code>pydata&#95;sphinx&#95;theme</code>) |
 | accent | <code>#694191</code> |
-| api_generator | <code>autoapi</code> |
+| api_generator | <code>autosummary</code> |
 | ignore | <code>tests/</code>, <code>scrap/</code>, <code>examples/</code> |
 | agent_outputs | <code>true</code> |
 | aggregates | <code>md</code> |
@@ -59,8 +59,8 @@ Latest release: <a href="https://pypi.org/project/viral/0.0.3/">0.0.3</a>, the s
 
 ```bash
 git clone https://github.com/thorwhalen/viral && cd viral
-git checkout 5a34e4954740f93b5a07226dee8b54d363f0ebf8
-pip install "epythet==0.2.23"
+git checkout 73a451f7d9af29723aff123f37476d3befd63f41
+pip install "epythet==0.2.25"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 
